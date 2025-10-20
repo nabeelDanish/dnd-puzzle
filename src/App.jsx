@@ -34,6 +34,7 @@ import { PlayerSelect } from './pages/PlayerSelect';
 import { ScenarioIntro } from './pages/ScenarioIntro';
 import { GuessForm } from './pages/GuessForm';
 import { BinaryStage } from './pages/BinaryStage';
+import { CipherStage } from './pages/CipherStage';
 
 const players = [
   {
@@ -78,6 +79,8 @@ function App() {
   const [guesses, setGuesses] = useState(["", "", "", "", ""]);
   const [feedback, setFeedback] = useState("");
   const [showBinaryPage, setShowBinaryPage] = useState(false);
+  const [showCipher, setShowCipher] = useState(false);
+  const [binarySuccess, setBinarySuccess] = useState(false);
 
   // Handlers
   const handleSelect = (idx) => {
@@ -107,6 +110,15 @@ function App() {
     }
   };
 
+  // BinaryStage success handler
+  const handleBinarySuccess = () => {
+    setBinarySuccess(true);
+    setTimeout(() => {
+      setShowCipher(true);
+      setPage('cipher');
+    }, 5000);
+  };
+
   // Page rendering
   return (
     <>
@@ -118,7 +130,8 @@ function App() {
           <GuessForm guesses={guesses} onGuessChange={handleGuessChange} onSubmit={handleSubmit} players={players} feedback={feedback} />
         </>
       )}
-      {page === 'binary' && <BinaryStage />}
+      {page === 'binary' && <BinaryStage onSuccess={handleBinarySuccess} />}
+      {page === 'cipher' && <CipherStage />}
     </>
   );
 }

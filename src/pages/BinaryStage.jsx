@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 
-export function BinaryStage() {
+export function BinaryStage({ onSuccess }) {
   const finalNumbers = [79, 67, 84, 65, 76];
   const [keyInputs, setKeyInputs] = useState(["", "", "", "", ""]);
   const [resultMsg, setResultMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (keyInputs.join("") === "OCTAL") {
+      setResultMsg("✅ Binary Translation Protocol -- Completed!");
+      setSuccess(true);
+      setTimeout(() => {
+        if (onSuccess) onSuccess();
+      }, 5000);
+    } else {
+      setResultMsg("❌ Incorrect key. Try again.");
+    }
+  };
 
   return (
     <div className="card">
@@ -182,14 +196,7 @@ export function BinaryStage() {
       {/* Add key input boxes and submit button */}
       <div>
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (keyInputs.join("") === "OCTAL") {
-              setResultMsg("✅ Binary Translation Protocol");
-            } else {
-              setResultMsg("❌ Incorrect key. Try again.");
-            }
-          }}
+          onSubmit={handleSubmit}
           style={{
             marginTop: "2em",
             display: "flex",
