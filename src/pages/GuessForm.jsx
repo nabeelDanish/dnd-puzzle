@@ -12,10 +12,10 @@ export function GuessForm({ guesses, onGuessChange, onSubmit, players, feedback 
           {feedback}
         </div>
       )}
-      <p>Enter your guesses for all pods (teamwork required):</p>
+      <p>Enter your access code for all pods:</p>
       {players.map((p, i) => (
         <div key={i} style={{ marginBottom: '0.5em' }}>
-          <label>{`Player ${i + 1}`}: </label>
+          <label>{`${p.name}`}: </label>
           <input
             type="text"
             value={guesses[i]}
@@ -33,7 +33,7 @@ export function GuessForm({ guesses, onGuessChange, onSubmit, players, feedback 
         </div>
       ))}
       <button type="submit" style={{ marginTop: '1em' }}>
-        Submit Guesses
+        Enter Access Code
       </button>
     </form>
   );
