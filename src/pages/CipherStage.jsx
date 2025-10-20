@@ -24,6 +24,31 @@ export function CipherStage() {
           ))}
         </div>
       </div>
+      {/* Vigenère cipher table */}
+      <div style={{ marginTop: '2.5em', overflowX: 'auto', textAlign: 'center' }}>
+        <table style={{ margin: '0 auto', borderCollapse: 'collapse', fontFamily: 'monospace', fontSize: '0.95em', background: 'rgba(20,40,20,0.12)', boxShadow: '0 0 12px #222', borderRadius: '8px' }}>
+          <thead>
+            <tr>
+              <th style={{ background: '#222', color: '#ffe600', padding: '0.3em 0.7em', border: '1px solid #333', position: 'sticky', left: 0 }}> </th>
+              {[...Array(26)].map((_, i) => (
+                <th key={i} style={{ background: '#222', color: '#39ff14', padding: '0.3em 0.7em', border: '1px solid #333' }}>{String.fromCharCode(65 + i)}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {[...Array(26)].map((_, row) => (
+              <tr key={row}>
+                <th style={{ background: '#222', color: '#ffe600', padding: '0.3em 0.7em', border: '1px solid #333', position: 'sticky', left: 0 }}>{String.fromCharCode(65 + row)}</th>
+                {[...Array(26)].map((_, col) => (
+                  <td key={col} style={{ color: '#39ff14', padding: '0.3em 0.7em', border: '1px solid #333', background: row === col ? '#222' : 'transparent', fontWeight: row === col ? 'bold' : 'normal' }}>
+                    {String.fromCharCode(65 + ((row + col) % 26))}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
