@@ -74,7 +74,7 @@ function FlickerDigits({ value }) {
 }
 
 function App() {
-  const [page, setPage] = useState('binary');
+  const [page, setPage] = useState('cipher');
   const [selected, setSelected] = useState(null);
   const [guesses, setGuesses] = useState(["", "", "", "", ""]);
   const [feedback, setFeedback] = useState("");

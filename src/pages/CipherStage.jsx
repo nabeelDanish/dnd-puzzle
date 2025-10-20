@@ -12,15 +12,15 @@ export function CipherStage() {
       <div style={{ margin: "2em auto", fontSize: "1.2em", color: "#39ff14", fontWeight: "bold" }}>
         Provide Key to break firewall
       </div>
-      <div style={{ display: "flex", justifyContent: "center", gap: "2em", marginTop: "2em" }}>
-        <div>
-          {[...word1].map((ch, i) => (
-            <div key={i} style={{ fontSize: "2.5em", fontWeight: "bold", color: "#39ff14", textShadow: "0 0 8px #39ff14", letterSpacing: "0.1em" }}>{ch}</div>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "2em" }}>
+        <div style={{ display: "flex", gap: "2em" }}>
+          {word1.split("").map((ch, i) => (
+            <span key={i} style={{ fontSize: "2.5em", fontWeight: "bold", color: "#39ff14", textShadow: "0 0 8px #39ff14", letterSpacing: "0.1em", minWidth: "1.5em", textAlign: "center" }}>{ch}</span>
           ))}
         </div>
-        <div>
-          {[...word2].map((ch, i) => (
-            <div key={i} style={{ fontSize: "2.5em", fontWeight: "bold", color: "#ffe600", textShadow: "0 0 8px #ffe600", letterSpacing: "0.1em" }}>{ch}</div>
+        <div style={{ display: "flex", gap: "2em", marginTop: "0.5em" }}>
+          {word2.split("").map((ch, i) => (
+            <span key={i} style={{ fontSize: "2.5em", fontWeight: "bold", color: "#ffe600", textShadow: "0 0 8px #ffe600", letterSpacing: "0.1em", minWidth: "1.5em", textAlign: "center" }}>{ch}</span>
           ))}
         </div>
       </div>
