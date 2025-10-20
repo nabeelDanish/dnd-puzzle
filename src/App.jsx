@@ -73,14 +73,28 @@ function FlickerDigits({ value }) {
   );
 }
 
+function FinalScreen() {
+  return (
+    <div className="card" style={{ textAlign: 'center', marginTop: '4em' }}>
+      <h2 style={{ color: '#39ff14', fontWeight: 'bold', fontSize: '2.2em', textShadow: '0 0 10px #39ff14' }}>
+        ACCESS GRANTED
+      </h2>
+      <div style={{ marginTop: '2em', color: '#ffe600', fontSize: '1.3em', fontWeight: 'bold' }}>
+        Welcome to the Nexus.
+      </div>
+    </div>
+  );
+}
+
 function App() {
-  const [page, setPage] = useState('cipher');
+  const [page, setPage] = useState('select');
   const [selected, setSelected] = useState(null);
   const [guesses, setGuesses] = useState(["", "", "", "", ""]);
   const [feedback, setFeedback] = useState("");
   const [showBinaryPage, setShowBinaryPage] = useState(false);
   const [showCipher, setShowCipher] = useState(false);
   const [binarySuccess, setBinarySuccess] = useState(false);
+  const [showFinal, setShowFinal] = useState(false);
 
   // Handlers
   const handleSelect = (idx) => {
@@ -119,6 +133,12 @@ function App() {
     }, 5000);
   };
 
+  // CipherStage success handler
+  const handleCipherSuccess = () => {
+    setShowFinal(true);
+    setPage('final');
+  };
+
   // Page rendering
   return (
     <>
@@ -131,7 +151,8 @@ function App() {
         </>
       )}
       {page === 'binary' && <BinaryStage onSuccess={handleBinarySuccess} />}
-      {page === 'cipher' && <CipherStage />}
+      {page === 'cipher' && <CipherStage onSuccess={handleCipherSuccess} />}
+      {page === 'final' && <FinalScreen />}
     </>
   );
 }

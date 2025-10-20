@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
-export function CipherStage() {
+export function CipherStage({ onSuccess }) {
   // Letters for vertical alignment
   const word1 = "OCTAL";
   const word2 = "BGQUD";
+  const [keyInputs, setKeyInputs] = useState(["", "", "", "", ""]);
+  const [resultMsg, setResultMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (keyInputs.join("") === "NEXUS") {
+      setResultMsg("✅ Firewall Breached. Access Granted.");
+      setSuccess(true);
+      setTimeout(() => {
+        if (onSuccess) onSuccess();
+      }, 5000);
+    } else {
+      setResultMsg("❌ Incorrect key. Try again.");
+    }
+  };
+
   return (
     <div className="card" style={{ textAlign: "center", marginTop: "3em" }}>
       <h2 style={{ color: "#ff3939", fontWeight: "bold", fontSize: "2em", letterSpacing: "0.2em", textShadow: "0 0 10px #ff3939" }}>
@@ -49,6 +66,55 @@ export function CipherStage() {
           </tbody>
         </table>
       </div>
+      {/* Guess boxes for NEXUS */}
+      {resultMsg && (
+        <div style={{ marginTop: '1em', color: resultMsg.startsWith('✅') ? '#39ff14' : '#ff3939', fontWeight: 'bold', fontSize: '1.1em' }}>{resultMsg}</div>
+      )}
+      <form onSubmit={handleSubmit} style={{ marginTop: '1em', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.7em' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '0.7em' }}>
+          {keyInputs.map((val, idx) => (
+            <input
+              key={idx}
+              type="text"
+              value={val}
+              onChange={e => {
+                const arr = [...keyInputs];
+                arr[idx] = e.target.value.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 1);
+                setKeyInputs(arr);
+                setResultMsg('');
+              }}
+              maxLength={1}
+              style={{
+                width: '2.5em',
+                height: '2.5em',
+                fontSize: '1.5em',
+                textAlign: 'center',
+                color: '#39ff14',
+                background: '#111',
+                border: '2px solid #39ff14',
+                borderRadius: '8px',
+                boxShadow: '0 0 8px #39ff1444',
+                fontWeight: 'bold',
+                outline: 'none',
+              }}
+            />
+          ))}
+        </div>
+        <button type="submit" style={{
+          marginTop: '1em',
+          fontSize: '1.1em',
+          background: '#222',
+          color: '#39ff14',
+          border: '1px solid #39ff14',
+          borderRadius: '6px',
+          padding: '0.5em 1.2em',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          boxShadow: '0 0 8px #39ff1444',
+        }}>
+          Submit
+        </button>
+      </form>
     </div>
   );
 }
