@@ -40,27 +40,27 @@ const players = [
   {
     name: 'Pod Alpha',
     shown: 26,
-    clue: 'I must add the number that Pod Beta subtracts.'
+    clue: 'What I add is exactly 8 more than what Pod Beta adds'
   },
   {
     name: 'Pod Beta',
     shown: 22,
-    clue: 'I will subtract the number Pod Gamma adds.'
+    clue: 'What I add is exactly 11 less than Pod Gamma adds.'
   },
   {
     name: 'Pod Gamma',
     shown: 28,
-    clue: 'I take the average of Pod Delta and Pod Epsilon, then subtract it from me.'
+    clue: 'What I add equals what Pod Delta adds plus 12.'
   },
   {
     name: 'Pod Delta',
     shown: 21,
-    clue: 'I add what Pod Alpha adds, then divide by 2.'
+    clue: 'What I add is 9 less than what Pod Alpha adds.'
   },
   {
     name: 'Pod Epsilon',
     shown: 25,
-    clue: 'I mirror Pod Beta’s result, then add 10.'
+    clue: 'What I add is 6 more than what Pod Beta adds.'
   },
 ];
 
